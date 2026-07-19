@@ -110,6 +110,7 @@
             label = "ENCODER_MSC_DOWN_UP";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
             tap-ms = <20>;
         };
     };
@@ -119,10 +120,10 @@
 
         default_layer {
             bindings = <
-&kp Q           &kp W         &kp E         &kp R                   &kp T                                                       &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&kp A           &kp S         &kp D         &kp F                   &kp G        &mkp LCLK                   &kp BACKSLASH      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
-&kp Z           &kp X         &kp C         &kp V                   &kp B        &mkp RCLK                   &kp RIGHT_BRACKET  &kp N        &kp M  &kp COMMA  &kp DOT  &kp APOS
-&kp LEFT_SHIFT  &kp LEFT_ALT  &kp LEFT_GUI  &lt_to_layer_0 6 JP_EISU  &lt 2 SPACE  &lt_to_layer_0 3 JP_KANA      &kp BACKSPACE         &lt 1 ENTER                             &kp RIGHT_SHIFT
+&kp Q           &kp W         &kp E         &kp R                     &kp T                                                         &kp Y        &kp U  &lt 5 I    &kp O    &kp P
+&kp A           &kp S         &kp D         &kp F                     &kp G        &mkp LCLK                     &kp BACKSLASH      &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
+&kp Z           &kp X         &kp C         &kp V                     &kp B        &kp RIGHT_CONTROL             &kp RIGHT_BRACKET  &kp N        &kp M  &kp COMMA  &kp DOT  &kp APOS
+&kp LEFT_SHIFT  &kp LEFT_ALT  &kp LEFT_GUI  &lt_to_layer_0 6 JP_EISU  &lt 2 SPACE  &lt_to_layer_0 3 JP_KANA      &kp BACKSPACE      &lt 1 ENTER                             &kp RIGHT_SHIFT
             >;
 
             sensor-bindings = <&encoder_msc_down_up>;
@@ -159,10 +160,10 @@
 
         MOUSE {
             bindings = <
-&trans    &trans     &trans     &trans     &trans                           &trans    &trans     &trans     &trans     &trans
-&trans    &trans     &trans     &trans     &trans    &mkp LCLK      &trans  &mkp MB4  &mkp LCLK  &mkp MCLK  &mkp RCLK  &mkp MB5
-&trans    &trans     &trans     &trans     &trans    &mkp RCLK      &trans  &trans    &trans     &trans     &trans     &trans
-&trans    &trans     &trans     &trans     &trans    &trans         &trans  &trans                                     &trans
+&trans  &trans  &trans  &trans  &trans                         &trans    &trans     &trans     &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &mkp LCLK      &trans  &mkp MB4  &mkp LCLK  &mkp MCLK  &mkp RCLK  &mkp MB5
+&trans  &trans  &trans  &trans  &trans  &mkp RCLK      &trans  &trans    &trans     &trans     &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans         &trans  &trans                                     &trans
             >;
         };
 
@@ -180,7 +181,7 @@
 &bt BT_CLR        &bt BT_CLR_ALL  &trans        &kp LA(PRINTSCREEN)  &kp PRINTSCREEN                              &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans            &trans          &trans        &trans               &trans           &trans      &studio_unlock  &mkp MB4      &mkp MB1      &mkp MB3      &mkp MB2      &mkp MB5
 &kp LEFT_ALT      &kp NUMBER_1    &kp NUMBER_2  &kp NUMBER_3         &kt KP_N4        &trans      &bootloader     &trans        &kp TAB       &trans        &trans        &trans
-&kp LEFT_CONTROL  &trans          &trans        &trans               &trans           &trans      &kp DELETE      &trans                                                  &trans
+&kp LEFT_CONTROL  &trans          &trans        &trans               &trans           &trans      &kp DELETE      &trans                                                  &kp RIGHT_CONTROL
             >;
         };
     };
