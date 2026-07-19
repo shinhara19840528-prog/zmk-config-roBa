@@ -17,17 +17,12 @@
 #     artifact-name: corne_left_with_logging
 #
 ---
-name: "Build Keyboard Firmware"
-
-on:
-  workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/build.yml"
-      - "config/**"
-      - "build.yaml"
-
-jobs:
-  build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-
+include:
+ - board: seeeduino_xiao_ble
+   shield: roBa_R
+   snippet: studio-rpc-usb-uart
+ - board: seeeduino_xiao_ble
+   shield: roBa_L
+ - board: seeeduino_xiao_ble
+   shield: settings_reset
+   
