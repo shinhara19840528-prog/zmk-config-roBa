@@ -37,6 +37,12 @@
     quick-tap-ms = <0>;
 };
 
+&msc {
+    acceleration-multiplier = <1>;
+    time-to-max-speed-ms = <0>;
+    delay-ms = <0>;
+};
+
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
