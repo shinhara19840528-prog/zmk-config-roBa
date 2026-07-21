@@ -20,7 +20,7 @@
 };
 
 / {
-    zip_temp_layer: zip_temp_layer {
+    trackball_temp_layer: trackball_temp_layer {
         compatible = "zmk,layer";
         #input-processor-cells = <2>;
         require-prior-idle-ms = <AUTOMOUSE_PRIOR_IDLE>;
