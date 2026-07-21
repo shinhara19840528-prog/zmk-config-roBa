@@ -1,6 +1,11 @@
 #include "roBa.dtsi"
 #include <input/processors.dtsi>
 
+#define SCROLL_LAYER 5
+#define AUTOMOUSE_LAYER 4
+#define AUTOMOUSE_TIMEOUT 50
+#define AUTOMOUSE_PRIOR_IDLE 500
+
 &default_transform {
     col-offset = <6>;
 };
@@ -21,12 +26,47 @@
         #input-processor-cells = <2>;
         require-prior-idle-ms = <200>;
     };
-
+/*
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
         input-processors = <&zip_temp_layer 4 500>;
+    };
+*/
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+
+        device = <&trackball>;
+
+        /*
+         * 最後のキー入力からAUTOMOUSE_PRIOR_IDLEミリ秒以上
+         * 経過した状態でトラックボールを動かすと、
+         * AUTOMOUSE_LAYERを一時的に有効化する。
+         *
+         * 最後のトラックボール入力から
+         * AUTOMOUSE_TIMEOUTミリ秒で解除する。
+         */
+        input-processors = <
+            &trackball_temp_layer
+                AUTOMOUSE_LAYER
+                AUTOMOUSE_TIMEOUT
+        >;
+
+        /*
+         * SCROLL_LAYERが有効な間だけ、
+         * XYカーソル入力をスクロールへ変換する。
+         */
+        scroll_mode {
+            layers = <SCROLL_LAYER>;
+
+            input-processors = <
+                &zip_xy_to_scroll_mapper
+                &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT
+                &zip_scroll_scaler 1 8
+            >;
+        };
     };
 };
 
