@@ -1,10 +1,6 @@
 #include "roBa.dtsi"
 #include <input/processors.dtsi>
 
-#define AUTOMOUSE_LAYER 4
-#define AUTOMOUSE_TIMEOUT 50
-#define AUTOMOUSE_PRIOR_IDLE 500
-
 &default_transform {
     col-offset = <6>;
 };
@@ -20,12 +16,6 @@
 };
 
 / {
-    trackball_temp_layer: trackball_temp_layer {
-        compatible = "zmk,input-processor-temp-layer";
-        #input-processor-cells = <2>;
-        require-prior-idle-ms = <AUTOMOUSE_PRIOR_IDLE>;
-    };
-
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         status = "okay";
@@ -33,18 +23,15 @@
         device = <&trackball>;
 
         /*
-         * 最後のキー入力からAUTOMOUSE_PRIOR_IDLEミリ秒以上
-         * 経過した状態でトラックボールを動かすと、
-         * AUTOMOUSE_LAYERを一時的に有効化する。
+         * automouse(レイヤー4)とscroll(レイヤー5)はPMW3610ドライバが
+         * roBa.dtsi の &trackball { automouse-layer; scroll-layers; } で処理する。
          *
-         * 最後のトラックボール入力から
-         * AUTOMOUSE_TIMEOUTミリ秒で解除する。
+         * 以前ここにあった temp-layer 入力プロセッサ(AUTOMOUSE_TIMEOUT=50ms)は
+         * automouse を二重管理し、スクロール中にレイヤー4を高速トグルして
+         * layer_state_changed イベントを氾濫させ、リスナーが-EAGAIN(-11)を返して
+         * 入力処理が停止(フリーズ)する原因になっていたため撤去。
+         * 自動マウスの発火はドライバ側(MOVE時のみ, CONFIG_PMW3610_AUTOMOUSE_TIMEOUT_MS)に一本化。
          */
-        input-processors = <
-            &trackball_temp_layer
-                AUTOMOUSE_LAYER
-                AUTOMOUSE_TIMEOUT
-        >;
     };
 };
 
