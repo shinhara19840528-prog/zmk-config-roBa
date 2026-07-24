@@ -38,7 +38,12 @@
 };
 
 &trackball {
-    automouse-layer = <4>;
+    /*
+     * automouse(自動マウス層=レイヤー4)はドライバ側では無効化する
+     * (automouse-layer未指定=デフォルト-1)。ZMKのtemp-layer入力プロセッサ
+     * (roBa_R.overlay)に一本化し、二重管理とタイプ中の誤マウス層化を防ぐ。
+     * scroll(レイヤー5)はドライバ内蔵機能を継続使用。
+     */
     scroll-layers = <5>;
 
     /*
