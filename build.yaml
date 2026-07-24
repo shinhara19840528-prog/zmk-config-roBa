@@ -21,11 +21,12 @@ include:
  - board: seeeduino_xiao_ble
    shield: roBa_R
    snippet: studio-rpc-usb-uart
- # フリーズ調査用: USBログ有効・Studioスニペット無しの右手側ファーム。
+ # フリーズ調査用: USBログ有効の右手側ファーム。公式のzmk-usb-loggingスニペットが
+ # CDC ACMノードとzephyr,console chosenを追加し、xiaoのシリアル無効化とも両立する。
  # 固まった直前のログをUSBシリアルで採取するための一時ビルド。
  - board: seeeduino_xiao_ble
    shield: roBa_R
-   cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
+   snippet: zmk-usb-logging
    artifact-name: roBa_R_logging
  - board: seeeduino_xiao_ble
    shield: roBa_L
